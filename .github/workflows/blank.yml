@@ -22,10 +22,6 @@ jobs:
     # Runs a single command using the runners shell
     - name: builds the file
       run: make build
+    - name: cat the file
+      run: make run
 
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: cat the file
-        run: make run
