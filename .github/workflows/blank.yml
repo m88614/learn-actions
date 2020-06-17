@@ -45,8 +45,7 @@ jobs:
       with:
         # Artifact name
         name: hellouploaded
-        # Destination path
-        path: hello.txt
+        key: ./hello.txt
       
     - name: builds the file
       run: make run
