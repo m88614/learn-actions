@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         partners: ["maria", "pd"]
-        single: ["deniz"]
+        single: ["deniz", "andreas"]
 
     steps:
       - uses: actions/checkout@v2
