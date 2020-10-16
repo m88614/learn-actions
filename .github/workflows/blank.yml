@@ -10,42 +10,25 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  test:
+    runs-on: macos-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    strategy:
+      matrix:
+        partners: ["maria", "pd"]
+        single: ["deniz"]
+
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
-    # Runs a single command using the runners shell
-    - name: builds the file
-      run: make build
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: hellouploaded
-        # A file, directory or wildcard pattern that describes what to upload
-        path: hello.txt
+      - name: set consul acl (enabled/disabled)
+        id: consul_acl
+        run: |
+          echo $partners
+          echo $single
+        env:
+          partners: ${{ matrix.partners }}
+          single: ${{ matrix.single }}
 
-
-  cat:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-
-    # Runs a single command using the runners shell
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v2
-      with:
-        # Artifact name
-        name: hellouploaded
-        key: ./hello.txt
-      
-    - name: builds the file
-      run: make run
