@@ -47,4 +47,4 @@ jobs:
       - name: Make .env_override in order to matrix test
         run: python .github/actions/test.py
         env:
-          ENV_KEY_test: $partners
+          ENV_KEY_test: env.partners
