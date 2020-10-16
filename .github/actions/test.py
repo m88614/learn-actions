@@ -3,4 +3,5 @@ import os
 env_keys = list(dict(os.environ).keys())
 
 for key in env_keys:
-    print(key)
+    if key.startswith("ENVKEY_"):
+        print(os.environ.get(key))
