@@ -45,7 +45,5 @@ jobs:
           partners: ${{ matrix.partners }}
 
       - name: Make .env_override in order to matrix test
-        run: echo $ENVKEY_env_override
-        env:
-          ENVKEY_env_override: ${{ partners }}
+        run: echo $partners
 
