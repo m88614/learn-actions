@@ -23,7 +23,7 @@ jobs:
         with:
           submodules: recursive
 
-      - name: set consul acl (enabled/disabled)
+      - name: print values
         id: consul_acl
         run: |
           echo $partners
@@ -31,4 +31,16 @@ jobs:
         env:
           partners: ${{ matrix.partners }}
           single: ${{ matrix.single }}
+
+      - name: set consul acl (enabled/disabled)
+        id: consul_acl
+        run: |
+          if [ "$partners" == 'maria' ]
+          then
+              echo "::set-output name=partners::true"
+          else
+              echo "::set-output name=partners::false"
+          fi
+        env:
+          partners: ${{ matrix.partners }}
 
