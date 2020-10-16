@@ -44,3 +44,8 @@ jobs:
         env:
           partners: ${{ matrix.partners }}
 
+      - name: Make .env_override in order to matrix test
+        run: echo $ENVKEY_env_override
+        env:
+          ENVKEY_env_override: ${{ steps.consul_acl.outputs.partners }}
+
