@@ -37,9 +37,9 @@ jobs:
         run: |
           if [ "$partners" == 'maria' ]
           then
-              echo "::set-output name=partners::true"
+              echo "partners=true" >> $GITHUB_ENV
           else
-              echo "::set-output name=partners::false"
+              echo "partners=false" >> $GITHUB_ENV
           fi
         env:
           partners: ${{ matrix.partners }}
