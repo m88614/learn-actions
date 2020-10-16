@@ -37,14 +37,12 @@ jobs:
         run: |
           if [ "$partners" == 'maria' ]
           then
-              echo "partners=true" >> $GITHUB_ENV
+              echo "ENVKEY_partners=true" >> $GITHUB_ENV
           else
-              echo "partners=false" >> $GITHUB_ENV
+              echo "ENVKEY_partners=false" >> $GITHUB_ENV
           fi
         env:
           partners: ${{ matrix.partners }}
 
       - name: Make .env_override in order to matrix test
         run: python .github/actions/test.py
-        env:
-          ENVKEY_test: ${{ steps.partners.outputs.partners }}
