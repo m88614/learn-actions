@@ -24,7 +24,7 @@ jobs:
           submodules: recursive
 
       - name: print values
-        id: consul_acl
+        id: printer
         run: |
           echo $partners
           echo $single
@@ -33,7 +33,7 @@ jobs:
           single: ${{ matrix.single }}
 
       - name: set consul acl (enabled/disabled)
-        id: consul_acl
+        id: partners
         run: |
           if [ "$partners" == 'maria' ]
           then
